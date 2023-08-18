@@ -1,0 +1,23 @@
+{
+  "name": "platform-sdk",
+  "version": "0.0.0",
+  "description": "IronForge platform SDK.",
+  "main": "src/platform-sdk.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "prettier --check .",
+    "lint:fix": "prettier --write .",
+    "test": "node --test --test-reporter=spec -r esbuild-runner/register ./test/*.ts"
+  },
+  "author": "Thorsten Lorenz <thlorenz@gmx.de>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@types/node": "^20.5.0",
+    "esbuild": "^0.19.2",
+    "esbuild-runner": "^2.2.2",
+    "prettier": "^3.0.2",
+    "typescript": "^5.1.6",
+    "undici": "^5.23.0"
+  }
+}
