@@ -1,4 +1,4 @@
-import { requestHeaders, tryExtractDataFromResponse } from '../utils'
+import { requestHeaders, tryExtractResultFromResponse } from '../utils'
 
 export type AccountsFilterConfig = {
   query: object
@@ -24,5 +24,5 @@ export async function accountsFilter(
       method: 'POST',
     }
   )
-  return tryExtractDataFromResponse(res)
+  return tryExtractResultFromResponse(res)
 }

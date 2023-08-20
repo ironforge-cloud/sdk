@@ -49,6 +49,27 @@ test('accounts-sdk: aggregate', async () => {
 })
 
 // -----------------
+// Filter By Type
+// -----------------
+test('accounts-sdk: filter by type', async (t) => {
+  const sdk = new PlatformSdk(API_KEY)
+  const { result, status } = await sdk.accounts.filterByType({
+    accountType: 'CandyMachine',
+    query: { filter: { 'data.data.price': 250 } },
+    cluster: 'devnet',
+    program: 'cndy3Z4yapfJBmL3ShUp5exZKqR3z33thTzeNMm2gRZ',
+    limit: 2,
+    offset: 0,
+  })
+  assert.equal(status, 200)
+  spok(t, result, {
+    metadata: { count: 2, offset: 0, limit: 2, hasMore: true },
+    error: null,
+  })
+  assert.equal(result.data?.length, 2)
+})
+
+// -----------------
 // FindOne
 // -----------------
 test('accounts-sdk: findOne', async (t) => {

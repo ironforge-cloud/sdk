@@ -1,4 +1,4 @@
-import { requestHeaders, tryExtractDataFromResponse } from '../utils'
+import { requestHeaders, tryExtractResultFromResponse } from '../utils'
 
 export type AccountsAggregateConfig = {
   query: object
@@ -22,5 +22,5 @@ export async function accountsAggregate(
       method: 'POST',
     }
   )
-  return tryExtractDataFromResponse(res)
+  return tryExtractResultFromResponse(res)
 }

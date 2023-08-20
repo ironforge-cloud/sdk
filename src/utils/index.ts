@@ -1,4 +1,4 @@
-export async function tryExtractDataFromResponse(
+export async function tryExtractResultFromResponse(
   res: Response
 ): Promise<{ result: any; status: number }> {
   if (!res.ok) {

@@ -1,4 +1,4 @@
-import { requestHeaders } from '../utils'
+import { requestHeaders, tryExtractResultFromResponse } from '../utils'
 
 export type AccountsFilterByTypeConfig = {
   accountType: string
@@ -26,9 +26,5 @@ export async function accountsFilterByType(
       method: 'POST',
     }
   )
-  if (!res.ok) {
-    throw new Error(`${res.status} ${res.statusText}`)
-  }
-  const data = await res.json()
-  return { data, status: res.status }
+  return tryExtractResultFromResponse(res)
 }

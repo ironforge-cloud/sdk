@@ -1,4 +1,4 @@
-import { requestHeaders, tryExtractDataFromResponse } from '../utils'
+import { requestHeaders, tryExtractResultFromResponse } from '../utils'
 
 export type AccountsMemcmpConfig = {
   query: object
@@ -24,5 +24,5 @@ export async function accountsMemcmp(
       method: 'POST',
     }
   )
-  return tryExtractDataFromResponse(res)
+  return tryExtractResultFromResponse(res)
 }

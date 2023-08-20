@@ -1,4 +1,4 @@
-import { requestHeaders, tryExtractDataFromResponse } from '../utils'
+import { requestHeaders, tryExtractResultFromResponse } from '../utils'
 
 export type AccountsFindOneConfig = {
   cluster: string
@@ -21,5 +21,5 @@ export async function accountsFindOne(
       method: 'GET',
     }
   )
-  return tryExtractDataFromResponse(res)
+  return tryExtractResultFromResponse(res)
 }
