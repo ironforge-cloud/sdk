@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "IronForge platform SDK.",
   "main": "src/platform-sdk.ts",
+  "types": "src/platform-sdk.ts",
   "scripts": {
     "build": "tsc",
     "lint": "prettier --check .",
@@ -13,7 +14,7 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "@types/node": "18",
+    "@types/node": "^20.5.1",
     "esbuild": "^0.19.2",
     "esbuild-runner": "^2.2.2",
     "prettier": "^3.0.2",
