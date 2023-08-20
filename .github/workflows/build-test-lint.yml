@@ -25,6 +25,14 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
 
+      - name: Install Dependencies
+        run: yarn install
+        shell: bash
+
+      - name: Build
+        run: yarn build
+        shell: bash
+
       - name: Build
         run: yarn build
         shell: bash
