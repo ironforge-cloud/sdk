@@ -12,13 +12,14 @@ export type AccountsFilterByTypeConfig = {
 
 export async function accountsFilterByType(
   apiKey: string,
+  host: string,
   config: AccountsFilterByTypeConfig
 ) {
   const { accountType, query, cluster, program, limit, offset, cacheControl } =
     config
 
   const res = await fetch(
-    `https://dev.accounts.ironforge.network/v1/${cluster}/${program}/filter` +
+    `https://${host}/v1/${cluster}/${program}/filter` +
       `/${accountType}?limit=${limit}&offset=${offset}&apiKey=${apiKey}`,
     {
       headers: requestHeaders({ cacheControl }),

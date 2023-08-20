@@ -11,12 +11,13 @@ export type AccountsMemcmpConfig = {
 
 export async function accountsMemcmp(
   apiKey: string,
+  host: string,
   config: AccountsMemcmpConfig
 ) {
   const { query, cluster, program, limit, offset, cacheControl } = config
 
   const res = await fetch(
-    `https://dev.accounts.ironforge.network/v1/${cluster}/${program}/memcmp` +
+    `https://${host}/v1/${cluster}/${program}/memcmp` +
       `?limit=${limit}&offset=${offset}&apiKey=${apiKey}`,
     {
       headers: requestHeaders({ cacheControl }),

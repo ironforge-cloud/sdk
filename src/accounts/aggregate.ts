@@ -9,13 +9,13 @@ export type AccountsAggregateConfig = {
 
 export async function accountsAggregate(
   apiKey: string,
+  host: string,
   config: AccountsAggregateConfig
 ) {
   const { query, cluster, program, cacheControl } = config
 
   const res = await fetch(
-    `https://dev.accounts.ironforge.network/v1/${cluster}/${program}/aggregate` +
-      `?apiKey=${apiKey}`,
+    `https://${host}/v1/${cluster}/${program}/aggregate` + `?apiKey=${apiKey}`,
     {
       headers: requestHeaders({ cacheControl }),
       body: JSON.stringify(query),

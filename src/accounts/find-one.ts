@@ -9,12 +9,13 @@ export type AccountsFindOneConfig = {
 
 export async function accountsFindOne(
   apiKey: string,
+  host: string,
   config: AccountsFindOneConfig
 ) {
   const { cluster, program, address, cacheControl } = config
 
   const res = await fetch(
-    `https://dev.accounts.ironforge.network/v1/${cluster}/${program}/findOne` +
+    `https://${host}/v1/${cluster}/${program}/findOne` +
       `/${address}?apiKey=${apiKey}`,
     {
       headers: requestHeaders({ cacheControl }),

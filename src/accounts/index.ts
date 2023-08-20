@@ -14,25 +14,28 @@ export { AccountsFindOneConfig } from './find-one'
 export { AccountsMemcmpConfig } from './memcmp'
 
 export class AccountsSdk {
-  constructor(public readonly apiKey: string) {}
+  constructor(
+    public readonly apiKey: string,
+    public readonly host: string
+  ) {}
 
   aggregate(config: AccountsAggregateConfig) {
-    return accountsAggregate(this.apiKey, config)
+    return accountsAggregate(this.apiKey, this.host, config)
   }
 
   filterByType(config: AccountsFilterByTypeConfig) {
-    return accountsFilterByType(this.apiKey, config)
+    return accountsFilterByType(this.apiKey, this.host, config)
   }
 
   filter(config: AccountsFilterConfig) {
-    return accountsFilter(this.apiKey, config)
+    return accountsFilter(this.apiKey, this.host, config)
   }
 
   findOne(config: AccountsFindOneConfig) {
-    return accountsFindOne(this.apiKey, config)
+    return accountsFindOne(this.apiKey, this.host, config)
   }
 
   memcmp(config: AccountsMemcmpConfig) {
-    return accountsMemcmp(this.apiKey, config)
+    return accountsMemcmp(this.apiKey, this.host, config)
   }
 }
