@@ -140,3 +140,32 @@ test('accounts-sdk: findOne', async (t) => {
     },
   })
 })
+
+// -----------------
+// Memcmp
+// -----------------
+test('accounts-sdk: memcmp', async (t) => {
+  const sdk = new PlatformSdk(API_KEY)
+  const { result, status } = await sdk.accounts.memcmp({
+    query: {
+      filters: [
+        {
+          memcmp: {
+            offset: 71,
+            bytes: '2C',
+          },
+        },
+      ],
+    },
+    cluster: 'devnet',
+    program: 'cndy3Z4yapfJBmL3ShUp5exZKqR3z33thTzeNMm2gRZ',
+    limit: 3,
+    offset: 0,
+  })
+  assert.equal(status, 200)
+  spok(t, result, {
+    metadata: { count: 3, offset: 0, limit: 3, hasMore: true },
+    error: null,
+  })
+  assert.equal(result.data?.length, 3)
+})
