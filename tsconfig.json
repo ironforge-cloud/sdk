@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2022",
     "lib": ["es2021"],
-    "types": ["node" ],
+    "types": ["@types/node" ],
     "moduleResolution": "node",
     "sourceMap": true,
     "declaration": true,
