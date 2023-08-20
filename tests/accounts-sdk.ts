@@ -106,7 +106,9 @@ test('accounts-sdk: find by type', async (t) => {
     metadata: { count: 2, offset: 0, limit: 2, hasMore: true },
     error: null,
   })
-  assert(result.data.all((x: any) => x.account_type === 'CandyMachine'))
+  assert(
+    !(result.data as any[]).some((x: any) => x.account_type !== 'CandyMachine')
+  )
   assert.equal(result.data?.length, 2)
 })
 
