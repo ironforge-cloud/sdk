@@ -1,12 +1,12 @@
 export async function tryExtractDataFromResponse(
   res: Response
-): Promise<{ data: any; status: StatusCode }> {
+): Promise<{ result: any; status: number }> {
   if (!res.ok) {
     // TODO(thlorenz): PlatformSdkError
     throw new Error(`${res.status} ${res.statusText}`)
   }
-  const data: any = await res.json()
-  return { data, status: res.status }
+  const result: any = await res.json()
+  return { result, status: res.status }
 }
 
 export type RequestHeaders = {

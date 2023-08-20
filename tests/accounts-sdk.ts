@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'assert/strict'
 import { PlatformSdk } from '../src/platform-sdk'
-import spok, { Specifications } from 'spok'
+import spok from 'spok'
 
 const API_KEY = process.env.IF_PLATFORM_API_KEY
 if (API_KEY == null) throw new Error('IF_PLATFORM_API_KEY not set')
@@ -9,9 +9,9 @@ if (API_KEY == null) throw new Error('IF_PLATFORM_API_KEY not set')
 // -----------------
 // Aggregate
 // -----------------
-test('accounts-sdk: aggregate', async (t) => {
+test('accounts-sdk: aggregate', async () => {
   const sdk = new PlatformSdk(API_KEY)
-  const { data, status } = await sdk.accounts.aggregate({
+  const { result, status } = await sdk.accounts.aggregate({
     query: {
       pipeline: [
         {
@@ -44,8 +44,8 @@ test('accounts-sdk: aggregate', async (t) => {
   })
 
   assert.equal(status, 200)
-  assert(data.error == null)
-  assert.equal(data.data?.length, 5)
+  assert(result.error == null)
+  assert.equal(result.data?.length, 5)
 })
 
 // -----------------
@@ -53,13 +53,13 @@ test('accounts-sdk: aggregate', async (t) => {
 // -----------------
 test('accounts-sdk: findOne', async (t) => {
   const sdk = new PlatformSdk(API_KEY)
-  const { data, status } = await sdk.accounts.findOne({
+  const { result, status } = await sdk.accounts.findOne({
     cluster: 'devnet',
     program: 'cndy3Z4yapfJBmL3ShUp5exZKqR3z33thTzeNMm2gRZ',
     address: 'Ei7njHQ4dk5WcfoJybgTQebdnWpyzV2MGJNJgcNGxeSd',
   })
   assert.equal(status, 200)
-  spok(t, data, {
+  spok(t, result, {
     metadata: {},
     error: spok.notDefined,
     data: {
