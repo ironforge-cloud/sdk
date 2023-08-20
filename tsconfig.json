@@ -4,7 +4,7 @@
     "module": "esnext",
     "lib": ["es2021"],
     "types": ["node" ],
-    "moduleResolution": "node",
+    "moduleResolution": "commonjs",
     "sourceMap": true,
     "declaration": true,
     "declarationMap": false,
@@ -25,7 +25,6 @@
   "include": [ 
     "types/*",
     "src/**/*.ts",
-    "tests/**/*.ts",
-    "node_modules/@types/**/*"
+    "tests/**/*.ts"
   ]
 }
