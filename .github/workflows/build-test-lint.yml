@@ -1,7 +1,7 @@
 name: Build+Test+Lint
 on:
   push:
-    branches: [master, thlorenz/accounts]
+    branches: [master]
   pull_request:
     branches: [master]
 
