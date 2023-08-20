@@ -3,6 +3,7 @@
     "target": "ES2022",
     "module": "esnext",
     "lib": ["es2021"],
+    "types": ["node" ],
     "moduleResolution": "node",
     "sourceMap": true,
     "declaration": true,
@@ -24,6 +25,7 @@
   "include": [ 
     "types/*",
     "src/**/*.ts",
-    "tests/**/*.ts"
+    "tests/**/*.ts",
+    "node_modules/@types/**/*"
   ]
 }
