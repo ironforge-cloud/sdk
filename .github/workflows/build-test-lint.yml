@@ -30,6 +30,8 @@ jobs:
         shell: bash
 
       - name: Test
+        env:
+          IF_PLATFORM_API_KEY: ${{ secrets.IF_PLATFORM_API_KEY }}
         run: yarn test
         shell: bash
 
