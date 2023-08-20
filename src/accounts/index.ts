@@ -4,6 +4,7 @@ import {
   accountsFilterByType,
   AccountsFilterByTypeConfig,
 } from './filter-by-type'
+import { accountsFindByType, AccountsFindByTypeConfig } from './find-by-type'
 import { accountsFindOne, AccountsFindOneConfig } from './find-one'
 import { accountsMemcmp, AccountsMemcmpConfig } from './memcmp'
 
@@ -29,6 +30,10 @@ export class AccountsSdk {
 
   filter(config: AccountsFilterConfig) {
     return accountsFilter(this.apiKey, this.host, config)
+  }
+
+  findByType(config: AccountsFindByTypeConfig) {
+    return accountsFindByType(this.apiKey, this.host, config)
   }
 
   findOne(config: AccountsFindOneConfig) {

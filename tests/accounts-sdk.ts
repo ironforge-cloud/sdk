@@ -70,6 +70,47 @@ test('accounts-sdk: filter by type', async (t) => {
 })
 
 // -----------------
+// Filter
+// -----------------
+test('accounts-sdk: filter', async (t) => {
+  const sdk = new PlatformSdk(API_KEY)
+  const { result, status } = await sdk.accounts.filter({
+    query: { filter: { 'data.data.price': 250 } },
+    cluster: 'devnet',
+    program: 'cndy3Z4yapfJBmL3ShUp5exZKqR3z33thTzeNMm2gRZ',
+    limit: 3,
+    offset: 0,
+  })
+  assert.equal(status, 200)
+  spok(t, result, {
+    metadata: { count: 3, offset: 0, limit: 3, hasMore: true },
+    error: null,
+  })
+  assert.equal(result.data?.length, 3)
+})
+
+// -----------------
+// Find By Type
+// -----------------
+test('accounts-sdk: find by type', async (t) => {
+  const sdk = new PlatformSdk(API_KEY)
+  const { result, status } = await sdk.accounts.findByType({
+    accountType: 'CandyMachine',
+    cluster: 'devnet',
+    program: 'cndy3Z4yapfJBmL3ShUp5exZKqR3z33thTzeNMm2gRZ',
+    limit: 2,
+    offset: 0,
+  })
+  assert.equal(status, 200)
+  spok(t, result, {
+    metadata: { count: 2, offset: 0, limit: 2, hasMore: true },
+    error: null,
+  })
+  assert(result.data.all((x: any) => x.account_type === 'CandyMachine'))
+  assert.equal(result.data?.length, 2)
+})
+
+// -----------------
 // FindOne
 // -----------------
 test('accounts-sdk: findOne', async (t) => {
