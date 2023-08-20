@@ -1,9 +1,11 @@
-export async function tryExtractDataFromResponse(res: Response) {
+export async function tryExtractDataFromResponse(
+  res: Response
+): Promise<{ data: any; status: StatusCode }> {
   if (!res.ok) {
     // TODO(thlorenz): PlatformSdkError
     throw new Error(`${res.status} ${res.statusText}`)
   }
-  const data = await res.json()
+  const data: any = await res.json()
   return { data, status: res.status }
 }
 
