@@ -2,14 +2,17 @@
   "name": "@ironforge/sdk",
   "version": "0.0.0",
   "description": "IronForge SDK.",
-  "main": "src/sdk.ts",
-  "types": "src/sdk.ts",
+  "main": "dist/sdk.js",
+  "types": "dist/sdk.d.ts",
   "scripts": {
     "build": "tsc",
     "lint": "prettier --check .",
     "lint:fix": "prettier --write .",
     "test": "node --test --test-reporter=spec -r esbuild-runner/register ./test/*.ts"
   },
+  "files": [
+    "dist"
+  ],
   "author": "Thorsten Lorenz <thlorenz@gmx.de>",
   "license": "MIT",
   "private": true,

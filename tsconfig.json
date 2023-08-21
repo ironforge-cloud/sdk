@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
+    "outDir": "./dist",
     "target": "ES2022",
     "lib": ["es2021", "dom"],
     "moduleResolution": "node",
     "sourceMap": true,
     "declaration": true,
     "declarationMap": false,
-    "noEmit": true,
+    "noEmit": false,
     "preserveWatchOutput": true,
     "emitDeclarationOnly": false,
     "importHelpers": false,
@@ -20,5 +21,5 @@
     "skipLibCheck": true,
     "resolveJsonModule": true
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts"]
+  "include": ["src/**/*.ts"]
 }
