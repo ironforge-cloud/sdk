@@ -1,5 +1,8 @@
-import { PLATFORM_ENV_PROD } from '../types';
-export async function tryExtractResultFromResponse(res) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.accountsHostForEnv = exports.requestHeaders = exports.tryExtractResultFromResponse = void 0;
+const types_1 = require("../types");
+async function tryExtractResultFromResponse(res) {
     if (!res.ok) {
         // TODO(thlorenz): PlatformSdkError
         throw new Error(`${res.status} ${res.statusText}`);
@@ -7,10 +10,11 @@ export async function tryExtractResultFromResponse(res) {
     const result = await res.json();
     return { result, status: res.status };
 }
+exports.tryExtractResultFromResponse = tryExtractResultFromResponse;
 const DEFAULT_REQUEST_HEADERS = {
     cacheControl: 'max-age=5',
 };
-export function requestHeaders(headers = {}) {
+function requestHeaders(headers = {}) {
     const { cacheControl } = { ...DEFAULT_REQUEST_HEADERS, ...headers };
     return {
         'cache-control': 'no-cache',
@@ -18,8 +22,10 @@ export function requestHeaders(headers = {}) {
         'x-ironforge-cache-control': cacheControl,
     };
 }
-export function accountsHostForEnv(env) {
-    const prefix = env === PLATFORM_ENV_PROD ? '' : `${env}.`;
+exports.requestHeaders = requestHeaders;
+function accountsHostForEnv(env) {
+    const prefix = env === types_1.PLATFORM_ENV_PROD ? '' : `${env}.`;
     return `${prefix}accounts.ironforge.network`;
 }
+exports.accountsHostForEnv = accountsHostForEnv;
 //# sourceMappingURL=index.js.map
