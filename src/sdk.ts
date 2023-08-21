@@ -6,7 +6,7 @@ export * from './accounts'
 export * from './types'
 export { accountsHostForEnv } from './utils'
 
-export class PlatformSdk {
+export class IronforgeSdk {
   private readonly _accountsHost: string
   constructor(
     public apiKey: string,
