@@ -1,3 +1,4 @@
+import { AccountsRequestResult } from '../types'
 import { requestHeaders, tryExtractResultFromResponse } from '../utils'
 
 export type AccountsFindOneConfig = {
@@ -7,7 +8,7 @@ export type AccountsFindOneConfig = {
   cacheControl?: string
 }
 
-export async function accountsFindOne(
+export async function accountsFindOne<T = any>(
   apiKey: string,
   host: string,
   config: AccountsFindOneConfig
@@ -22,5 +23,5 @@ export async function accountsFindOne(
       method: 'GET',
     }
   )
-  return tryExtractResultFromResponse(res)
+  return tryExtractResultFromResponse<AccountsRequestResult<T>>(res)
 }

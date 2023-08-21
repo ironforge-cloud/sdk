@@ -1,3 +1,4 @@
+import { AccountsRequestResultWithMetadata } from '../types'
 import { requestHeaders, tryExtractResultFromResponse } from '../utils'
 
 export type AccountsFilterConfig = {
@@ -9,7 +10,7 @@ export type AccountsFilterConfig = {
   cacheControl?: string
 }
 
-export async function accountsFilter(
+export async function accountsFilter<T = any>(
   apiKey: string,
   host: string,
   config: AccountsFilterConfig
@@ -25,5 +26,5 @@ export async function accountsFilter(
       method: 'POST',
     }
   )
-  return tryExtractResultFromResponse(res)
+  return tryExtractResultFromResponse<AccountsRequestResultWithMetadata<T>>(res)
 }

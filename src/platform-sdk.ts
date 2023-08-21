@@ -1,7 +1,9 @@
 import { AccountsSdk } from './accounts'
-import { PlatformEnv, PLATFORM_ENV_PROD, accountsHostForEnv } from './utils'
+import { PLATFORM_ENV_PROD, PlatformEnv } from './types'
+import { accountsHostForEnv } from './utils'
 
 export * from './accounts'
+export * from './types'
 
 export class PlatformSdk {
   private readonly _accountsHost: string

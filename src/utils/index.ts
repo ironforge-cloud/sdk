@@ -1,6 +1,8 @@
-export async function tryExtractResultFromResponse(
+import { PLATFORM_ENV_PROD, PlatformEnv } from '../types'
+
+export async function tryExtractResultFromResponse<T>(
   res: Response
-): Promise<{ result: any; status: number }> {
+): Promise<{ result: T; status: number }> {
   if (!res.ok) {
     // TODO(thlorenz): PlatformSdkError
     throw new Error(`${res.status} ${res.statusText}`)
@@ -25,16 +27,6 @@ export function requestHeaders(headers: Partial<RequestHeaders> = {}) {
     'x-ironforge-cache-control': cacheControl,
   }
 }
-
-export const PLATFORM_ENV_DEV = 'dev'
-export const PLATFORM_ENV_STAGE = 'stage'
-export const PLATFORM_ENV_PROD = 'prod'
-export const PLATFORM_ENVS = [
-  PLATFORM_ENV_DEV,
-  PLATFORM_ENV_STAGE,
-  PLATFORM_ENV_PROD,
-] as const
-export type PlatformEnv = (typeof PLATFORM_ENVS)[number]
 
 export function accountsHostForEnv(env: PlatformEnv) {
   const prefix = env === PLATFORM_ENV_PROD ? '' : `${env}.`

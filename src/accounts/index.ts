@@ -20,27 +20,27 @@ export class AccountsSdk {
     public readonly host: string
   ) {}
 
-  aggregate(config: AccountsAggregateConfig) {
-    return accountsAggregate(this.apiKey, this.host, config)
+  aggregate<T = any>(config: AccountsAggregateConfig) {
+    return accountsAggregate<T>(this.apiKey, this.host, config)
   }
 
-  filterByType(config: AccountsFilterByTypeConfig) {
-    return accountsFilterByType(this.apiKey, this.host, config)
+  filterByType<T = any>(config: AccountsFilterByTypeConfig) {
+    return accountsFilterByType<T>(this.apiKey, this.host, config)
   }
 
-  filter(config: AccountsFilterConfig) {
-    return accountsFilter(this.apiKey, this.host, config)
+  filter<T = any>(config: AccountsFilterConfig) {
+    return accountsFilter<T>(this.apiKey, this.host, config)
   }
 
-  findByType(config: AccountsFindByTypeConfig) {
-    return accountsFindByType(this.apiKey, this.host, config)
+  findByType<T = any>(config: AccountsFindByTypeConfig) {
+    return accountsFindByType<T>(this.apiKey, this.host, config)
   }
 
-  findOne(config: AccountsFindOneConfig) {
-    return accountsFindOne(this.apiKey, this.host, config)
+  findOne<T = any>(config: AccountsFindOneConfig) {
+    return accountsFindOne<T>(this.apiKey, this.host, config)
   }
 
-  memcmp(config: AccountsMemcmpConfig) {
-    return accountsMemcmp(this.apiKey, this.host, config)
+  memcmp<T = any>(config: AccountsMemcmpConfig) {
+    return accountsMemcmp<T>(this.apiKey, this.host, config)
   }
 }

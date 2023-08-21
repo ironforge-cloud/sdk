@@ -45,6 +45,7 @@ test('accounts-sdk: aggregate', async () => {
 
   assert.equal(status, 200)
   assert(result.error == null)
+  result.data
   assert.equal(result.data?.length, 5)
 })
 

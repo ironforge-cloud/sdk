@@ -1,3 +1,4 @@
+import { AccountsRequestResult } from '../types'
 import { requestHeaders, tryExtractResultFromResponse } from '../utils'
 
 export type AccountsAggregateConfig = {
@@ -7,7 +8,7 @@ export type AccountsAggregateConfig = {
   cacheControl?: string
 }
 
-export async function accountsAggregate(
+export async function accountsAggregate<T = any>(
   apiKey: string,
   host: string,
   config: AccountsAggregateConfig
@@ -22,5 +23,5 @@ export async function accountsAggregate(
       method: 'POST',
     }
   )
-  return tryExtractResultFromResponse(res)
+  return tryExtractResultFromResponse<AccountsRequestResult<T>>(res)
 }

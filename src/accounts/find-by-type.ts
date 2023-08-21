@@ -1,3 +1,4 @@
+import { AccountsRequestResultWithMetadata } from '../types'
 import { requestHeaders, tryExtractResultFromResponse } from '../utils'
 
 export type AccountsFindByTypeConfig = {
@@ -9,7 +10,7 @@ export type AccountsFindByTypeConfig = {
   cacheControl?: string
 }
 
-export async function accountsFindByType(
+export async function accountsFindByType<T = any>(
   apiKey: string,
   host: string,
   config: AccountsFindByTypeConfig
@@ -24,5 +25,5 @@ export async function accountsFindByType(
       method: 'GET',
     }
   )
-  return tryExtractResultFromResponse(res)
+  return tryExtractResultFromResponse<AccountsRequestResultWithMetadata<T>>(res)
 }

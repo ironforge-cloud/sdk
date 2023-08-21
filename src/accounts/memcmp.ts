@@ -1,3 +1,4 @@
+import { AccountsRequestResultWithMetadata } from '../types'
 import { requestHeaders, tryExtractResultFromResponse } from '../utils'
 
 export type AccountsMemcmpConfig = {
@@ -9,7 +10,7 @@ export type AccountsMemcmpConfig = {
   cacheControl?: string
 }
 
-export async function accountsMemcmp(
+export async function accountsMemcmp<T = any>(
   apiKey: string,
   host: string,
   config: AccountsMemcmpConfig
@@ -25,5 +26,5 @@ export async function accountsMemcmp(
       method: 'POST',
     }
   )
-  return tryExtractResultFromResponse(res)
+  return tryExtractResultFromResponse<AccountsRequestResultWithMetadata<T>>(res)
 }
