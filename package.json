@@ -1,8 +1,9 @@
 {
-  "name": "platform-sdk",
+  "name": "@ironforge-cloud/sdk",
   "version": "0.0.0",
-  "description": "IronForge platform SDK.",
-  "main": "src/platform-sdk.ts",
+  "description": "IronForge SDK.",
+  "main": "src/sdk.ts",
+  "types": "src/sdk.ts",
   "scripts": {
     "build": "tsc",
     "lint": "prettier --check .",
@@ -13,11 +14,11 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "@types/node": "^20.5.0",
+    "@types/node": "^20.5.1",
     "esbuild": "^0.19.2",
     "esbuild-runner": "^2.2.2",
     "prettier": "^3.0.2",
-    "typescript": "^5.1.6",
-    "undici": "^5.23.0"
+    "spok": "^1.5.5",
+    "typescript": "^5.1.6"
   }
 }

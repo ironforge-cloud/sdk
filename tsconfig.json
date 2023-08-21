@@ -1,9 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "esnext",
-    "lib": ["es2021"],
-    "types": ["node" ],
+    "lib": ["es2021", "dom"],
     "moduleResolution": "node",
     "sourceMap": true,
     "declaration": true,
@@ -22,8 +20,5 @@
     "skipLibCheck": true,
     "resolveJsonModule": true
   },
-  "include": [ 
-    "types/*",
-    "src/**/*.ts"
-  ]
+  "include": ["src/**/*.ts", "tests/**/*.ts"]
 }

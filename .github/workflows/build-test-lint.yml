@@ -1,0 +1,44 @@
+name: Build+Test+Lint
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build-test-lint:
+    runs-on:
+      group: Default
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+
+      - name: Install Dependencies
+        run: yarn install
+        shell: bash
+
+      - name: Build
+        run: yarn build
+        shell: bash
+
+      - name: Test
+        env:
+          IF_PLATFORM_API_KEY: ${{ secrets.IF_PLATFORM_API_KEY }}
+        run: yarn test
+        shell: bash
+
+      - name: Lint
+        run: yarn lint
+        shell: bash
