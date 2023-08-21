@@ -125,7 +125,6 @@ test('accounts-sdk: findOne', async (t) => {
   })
   assert.equal(status, 200)
   spok(t, result, {
-    metadata: {},
     error: spok.notDefined,
     data: {
       _id: 'Ei7njHQ4dk5WcfoJybgTQebdnWpyzV2MGJNJgcNGxeSd',
