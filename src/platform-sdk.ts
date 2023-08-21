@@ -4,6 +4,7 @@ import { accountsHostForEnv } from './utils'
 
 export * from './accounts'
 export * from './types'
+export { accountsHostForEnv } from './utils'
 
 export class PlatformSdk {
   private readonly _accountsHost: string

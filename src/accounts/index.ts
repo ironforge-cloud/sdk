@@ -11,6 +11,7 @@ import { accountsMemcmp, AccountsMemcmpConfig } from './memcmp'
 export { AccountsAggregateConfig } from './aggregate'
 export { AccountsFilterByTypeConfig } from './filter-by-type'
 export { AccountsFilterConfig } from './filter'
+export { AccountsFindByTypeConfig } from './find-by-type'
 export { AccountsFindOneConfig } from './find-one'
 export { AccountsMemcmpConfig } from './memcmp'
 
