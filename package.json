@@ -1,5 +1,5 @@
 {
-  "name": "@ironforge-cloud/sdk",
+  "name": "@ironforge/sdk",
   "version": "0.0.0",
   "description": "IronForge SDK.",
   "main": "src/sdk.ts",
