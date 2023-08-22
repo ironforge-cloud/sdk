@@ -1,0 +1,7 @@
+{
+  "entryPoints": ["src/sdk.ts"],
+  "excludePrivate": true,
+  "categorizeByGroup": false,
+  "readme": "none",
+  "emit": "both"
+}

@@ -5,7 +5,7 @@
 /**
  * The success case of @link AccountsRequestResult.
  */
-type SuccessAccountsRequestResult<T> = {
+export type SuccessAccountsRequestResult<T> = {
   error: null | undefined
   data: T
 }
@@ -13,7 +13,7 @@ type SuccessAccountsRequestResult<T> = {
 /**
  * The failure case of @link AccountsRequestResult.
  */
-type FailureAccountsRequestResult = {
+export type FailureAccountsRequestResult = {
   error: string
   data: null | undefined
 }

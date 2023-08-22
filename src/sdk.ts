@@ -4,6 +4,7 @@ import { accountsHostForEnv } from './utils'
 
 export * from './accounts'
 export * from './types'
+export * from './utils/cluster'
 export { accountsHostForEnv } from './utils'
 
 /**
