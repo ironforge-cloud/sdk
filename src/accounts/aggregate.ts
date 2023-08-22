@@ -1,10 +1,15 @@
 import { AccountsRequestResult } from '../types'
-import { requestHeaders, tryExtractResultFromResponse } from '../utils'
+import { Cluster, requestHeaders, tryExtractResultFromResponse } from '../utils'
 
+/** Configures the accounts aggregate request. */
 export type AccountsAggregateConfig = {
+  /** The query to execute. */
   query: object
-  cluster: string
+  /** The cluster to execute the query on, i.e. mainnet or devnet. */
+  cluster: Cluster
+  /** The program whose accounts we are querying. */
   program: string
+  /** The cache control header to use for the request. */
   cacheControl?: string
 }
 

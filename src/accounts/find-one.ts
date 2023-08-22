@@ -1,10 +1,15 @@
 import { AccountsRequestResult } from '../types'
-import { requestHeaders, tryExtractResultFromResponse } from '../utils'
+import { Cluster, requestHeaders, tryExtractResultFromResponse } from '../utils'
 
+/** Configures the accounts findOne request. */
 export type AccountsFindOneConfig = {
-  cluster: string
+  /** The cluster to execute the query on, i.e. mainnet or devnet. */
+  cluster: Cluster
+  /** The program whose accounts we are querying. */
   program: string
+  /** The address of the account to find. */
   address: string
+  /** The cache control header to use for the request. */
   cacheControl?: string
 }
 
