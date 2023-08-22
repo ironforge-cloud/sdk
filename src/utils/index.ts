@@ -1,11 +1,13 @@
 import { PLATFORM_ENV_PROD, PlatformEnv } from '../types'
 
+export * from './cluster'
+
 export async function tryExtractResultFromResponse<T>(
   res: Response
 ): Promise<{ result: T; status: number }> {
   if (!res.ok) {
-    // TODO(thlorenz): PlatformSdkError
-    throw new Error(`${res.status} ${res.statusText}`)
+    const text = await res.text()
+    throw new Error(`Status: ${res.status} '${res.statusText}' (${text})`)
   }
   const result: any = await res.json()
   return { result, status: res.status }
@@ -28,6 +30,11 @@ export function requestHeaders(headers: Partial<RequestHeaders> = {}) {
   }
 }
 
+/**
+ * Returns the accounts host for the given environment.
+ * @param env The environment to use for all requests, provide
+ * [PLATFORM_ENV_PROD] unless you work at Ironforge :)
+ */
 export function accountsHostForEnv(env: PlatformEnv) {
   const prefix = env === PLATFORM_ENV_PROD ? '' : `${env}.`
   return `${prefix}accounts.ironforge.network`
