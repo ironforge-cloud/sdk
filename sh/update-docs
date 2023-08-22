@@ -11,7 +11,7 @@ fi
 if [[ -z $(git status --porcelain) ]];
 then
   git checkout gh-pages && git reset master --hard  && \
-  yarn doc && git add ./docs &&                        \
+  yarn doc && git add ./docs -f  &&                        \
   git commit -m "docs: updating to latest API" &&      \
   git push origin gh-pages -f &&                       \
   git checkout master
