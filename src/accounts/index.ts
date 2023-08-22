@@ -35,6 +35,8 @@ export class AccountsSdk {
 
   /**
    * Applies an aggregate function to the accounts of a program.
+   *
+   * @template T The expected type of the aggregation result.
    * @returns The result along with the response status.
    */
   aggregate<T = any>(config: AccountsAggregateConfig) {
@@ -44,6 +46,8 @@ export class AccountsSdk {
   /**
    * Filters the accounts of a program matching a specific account
    * type.
+   *
+   * @template T The expected type of the filterByType result.
    * @returns The result along with the response status.
    */
   filterByType<T = any>(config: AccountsFilterByTypeConfig) {
@@ -52,6 +56,8 @@ export class AccountsSdk {
 
   /**
    * Filters the accounts of a program.
+   *
+   * @template T The expected type of the filter result.
    * @returns The result along with the response status.
    */
   filter<T = any>(config: AccountsFilterConfig) {
@@ -60,6 +66,8 @@ export class AccountsSdk {
 
   /**
    * Finds the accounts of a program matching a specific account type.
+   *
+   * @template T The expected type of the findByType result.
    * @returns The result along with the response status.
    */
   findByType<T = any>(config: AccountsFindByTypeConfig) {
@@ -68,6 +76,8 @@ export class AccountsSdk {
 
   /**
    * Finds one account of a program with the provided address.
+   *
+   * @template T The expected type of the findOne result.
    * @returns The result along with the response status.
    */
   findOne<T = any>(config: AccountsFindOneConfig) {
@@ -76,6 +86,8 @@ export class AccountsSdk {
 
   /**
    * Filters the accounts of a program using a memcmp filter.
+   *
+   * @template T The expected type of the memcmp result.
    * @returns The result along with the response status.
    */
   memcmp<T = any>(config: AccountsMemcmpConfig) {
