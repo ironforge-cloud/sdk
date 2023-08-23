@@ -54,37 +54,3 @@ export type AccountsRequestResultWithMetadata<T> = AccountsRequestResult<
     hasMore: boolean
   }
 }
-
-// -----------------
-// PlatformEnv
-// -----------------
-
-/**
- * Dev environment, used to develop the Ironforge platform.
- */
-export const PLATFORM_ENV_DEV = 'dev'
-
-/**
- * Stage environment, used to test the Ironforge platform.
- */
-export const PLATFORM_ENV_STAGE = 'stage'
-
-/**
- * Prod environment, used to run the Ironforge platform.
- * This is the environment that all users of the SDK outside of Ironforge should use.
- */
-export const PLATFORM_ENV_PROD = 'prod'
-
-/**
- * All possible platform environments.
- */
-export const PLATFORM_ENVS = [
-  PLATFORM_ENV_DEV,
-  PLATFORM_ENV_STAGE,
-  PLATFORM_ENV_PROD,
-] as const
-
-/**
- * PlatformEnv is a union type of all possible platform environments.
- */
-export type PlatformEnv = (typeof PLATFORM_ENVS)[number]

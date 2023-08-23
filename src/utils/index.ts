@@ -1,5 +1,3 @@
-import { PLATFORM_ENV_PROD, PlatformEnv } from '../types'
-
 export * from './cluster'
 
 export async function tryExtractResultFromResponse<T>(
@@ -32,10 +30,18 @@ export function requestHeaders(headers: Partial<RequestHeaders> = {}) {
 
 /**
  * Returns the accounts host for the given environment.
- * @param env The environment to use for all requests, provide
- * [PLATFORM_ENV_PROD] unless you work at Ironforge :)
+ * @param maybePrefix The prefix use for all requests, provide
  */
-export function accountsHostForEnv(env: PlatformEnv) {
-  const prefix = env === PLATFORM_ENV_PROD ? '' : `${env}.`
+export function accountsHostWithPrefix(maybePrefix?: string) {
+  const prefix = maybePrefix == null ? '' : `${maybePrefix}.`
   return `${prefix}accounts.ironforge.network`
+}
+
+/**
+ * Returns the RPC host for the given environment.
+ * @param maybePrefix The prefix use for all requests, provide
+ */
+export function rpcHostWithPrefix(maybePrefix?: string) {
+  const prefix = maybePrefix == null ? '' : `${maybePrefix}.`
+  return `${prefix}rpc.ironforge.network`
 }
