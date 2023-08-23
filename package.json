@@ -17,7 +17,6 @@
   ],
   "author": "Thorsten Lorenz <thlorenz@gmx.de>",
   "license": "MIT",
-  "private": true,
   "devDependencies": {
     "@types/node": "^20.5.1",
     "esbuild": "^0.19.2",

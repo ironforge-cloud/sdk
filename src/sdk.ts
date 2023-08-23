@@ -1,11 +1,10 @@
 import { AccountsSdk } from './accounts'
-import { PLATFORM_ENV_PROD, PlatformEnv } from './types'
-import { accountsHostForEnv } from './utils'
+import { accountsHostWithPrefix } from './utils'
 
 export * from './accounts'
 export * from './types'
 export * from './utils/cluster'
-export { accountsHostForEnv } from './utils'
+export { accountsHostWithPrefix, rpcHostWithPrefix } from './utils'
 
 /**
  * The Ironforge SDK which is used as an entry point to all available SDK methods.
@@ -16,13 +15,13 @@ export class IronforgeSdk {
   /**
    * Creates a new Ironforge SDK instance.
    * @param apiKey The API key to use for all requests.
-   * @param env The environment to use for all requests, only provide this if you work at Ironforge :)
+   * @param prefix The prefix to use for all request urls.
    */
   constructor(
     public apiKey: string,
-    env: PlatformEnv = PLATFORM_ENV_PROD
+    prefix?: string
   ) {
-    this._accountsHost = accountsHostForEnv(env)
+    this._accountsHost = accountsHostWithPrefix(prefix)
   }
 
   /**
