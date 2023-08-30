@@ -1,12 +1,12 @@
-import { AccountsRequestResultWithMetadata } from '../types'
+import { AccountsFilterBody, AccountsRequestResultWithMetadata } from '../types'
 import { Cluster, requestHeaders, tryExtractResultFromResponse } from '../utils'
 
 /** Configures the accounts filterByType request. */
 export type AccountsFilterByTypeConfig = {
   /** The type of account consider for the query. */
   accountType: string
-  /** The query to execute. */
-  query: object
+  /** The request body. */
+  body: AccountsFilterBody
   /** The cluster to execute the query on, i.e. mainnet or devnet. */
   cluster: Cluster
   /** The program whose accounts we are querying. */
@@ -24,7 +24,7 @@ export async function accountsFilterByType<T = any>(
   host: string,
   config: AccountsFilterByTypeConfig
 ) {
-  const { accountType, query, cluster, program, limit, offset, cacheControl } =
+  const { accountType, body, cluster, program, limit, offset, cacheControl } =
     config
 
   const res = await fetch(
@@ -32,7 +32,7 @@ export async function accountsFilterByType<T = any>(
       `/${accountType}?limit=${limit}&offset=${offset}&apiKey=${apiKey}`,
     {
       headers: requestHeaders({ cacheControl }),
-      body: JSON.stringify(query),
+      body: JSON.stringify(body),
       method: 'POST',
     }
   )

@@ -22,7 +22,6 @@ export function requestHeaders(headers: Partial<RequestHeaders> = {}) {
   const { cacheControl } = { ...DEFAULT_REQUEST_HEADERS, ...headers }
 
   return {
-    'cache-control': 'no-cache',
     'content-type': 'application/json',
     'x-ironforge-cache-control': cacheControl,
   }
