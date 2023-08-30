@@ -1,10 +1,10 @@
-import { AccountsRequestResultWithMetadata } from '../types'
+import { AccountsRequestResultWithMetadata, AccountsMemcmpBody } from '../types'
 import { Cluster, requestHeaders, tryExtractResultFromResponse } from '../utils'
 
 /** Configures the accounts memcmp request. */
 export type AccountsMemcmpConfig = {
-  /** The query to execute. */
-  query: object
+  /** The request body. */
+  body: AccountsMemcmpBody
   /** The cluster to execute the query on, i.e. mainnet or devnet. */
   cluster: Cluster
   /** The program whose accounts we are querying. */
@@ -22,14 +22,14 @@ export async function accountsMemcmp<T = any>(
   host: string,
   config: AccountsMemcmpConfig
 ) {
-  const { query, cluster, program, limit, offset, cacheControl } = config
+  const { body, cluster, program, limit, offset, cacheControl } = config
 
   const res = await fetch(
     `https://${host}/v1/${cluster}/${program}/memcmp` +
       `?limit=${limit}&offset=${offset}&apiKey=${apiKey}`,
     {
       headers: requestHeaders({ cacheControl }),
-      body: JSON.stringify(query),
+      body: JSON.stringify(body),
       method: 'POST',
     }
   )

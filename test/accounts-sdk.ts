@@ -12,7 +12,7 @@ if (API_KEY == null) throw new Error('IF_PLATFORM_API_KEY not set')
 test('accounts-sdk: aggregate', async () => {
   const sdk = new IronforgeSdk(API_KEY)
   const { result, status } = await sdk.accounts.aggregate({
-    query: {
+    body: {
       pipeline: [
         {
           $match: {
@@ -56,7 +56,7 @@ test('accounts-sdk: filter by type', async (t) => {
   const sdk = new IronforgeSdk(API_KEY)
   const { result, status } = await sdk.accounts.filterByType({
     accountType: 'CandyMachine',
-    query: { filter: { 'data.data.price': 250 } },
+    body: { filter: { 'data.data.price': 250 } },
     cluster: 'devnet',
     program: 'cndy3Z4yapfJBmL3ShUp5exZKqR3z33thTzeNMm2gRZ',
     limit: 2,
@@ -76,7 +76,7 @@ test('accounts-sdk: filter by type', async (t) => {
 test('accounts-sdk: filter', async (t) => {
   const sdk = new IronforgeSdk(API_KEY)
   const { result, status } = await sdk.accounts.filter({
-    query: { filter: { 'data.data.price': 250 } },
+    body: { filter: { 'data.data.price': 250 } },
     cluster: 'devnet',
     program: 'cndy3Z4yapfJBmL3ShUp5exZKqR3z33thTzeNMm2gRZ',
     limit: 3,
@@ -149,7 +149,7 @@ test('accounts-sdk: findOne', async (t) => {
 test('accounts-sdk: memcmp', async (t) => {
   const sdk = new IronforgeSdk(API_KEY)
   const { result, status } = await sdk.accounts.memcmp({
-    query: {
+    body: {
       filters: [
         {
           memcmp: {
