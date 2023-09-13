@@ -104,7 +104,7 @@ export type AccountsAggregateBody = {
   pipeline: Record<string, any>[]
 }
 
-export type AccountsMongoDbFindBody = {
+export type MongoDbFindBody = {
   query?: object
   projection?: object
   options?: {
@@ -113,10 +113,6 @@ export type AccountsMongoDbFindBody = {
     sort?: Sort
   }
 }
-export type AccountsMongoDbAggregateBody = {
+export type MongoDbAggregateBody = {
   pipeline: Record<string, any>[]
 }
-
-export type AccountsMongoDbBody =
-  | AccountsMongoDbFindBody
-  | AccountsMongoDbAggregateBody

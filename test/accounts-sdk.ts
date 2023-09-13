@@ -180,7 +180,7 @@ test('accounts-sdk: mongodb', async (t) => {
   const sdk = new IronforgeSdk(API_KEY, 'dev')
 
   await t.test('aggregation pipeline', async () => {
-    const { result, status } = await sdk.accounts.mongodb({
+    const { result, status } = await sdk.accounts.mongodb.aggregate({
       body: {
         pipeline: [
           {
@@ -216,8 +216,8 @@ test('accounts-sdk: mongodb', async (t) => {
     })
   })
 
-  await t.test('query with sort + pagination', async () => {
-    const { result, status } = await sdk.accounts.mongodb({
+  await t.test('find with sort + pagination', async () => {
+    const { result, status } = await sdk.accounts.mongodb.find({
       body: {
         query: {
           account_type: 'CollectionPDA',
@@ -240,11 +240,14 @@ test('accounts-sdk: mongodb', async (t) => {
     })
 
     const data = result.data
+    assert(data != null)
+
+    assert.equal(data.length, 5)
+
     data.forEach((item) => {
       assert.equal(item.account_type, 'CollectionPDA')
     })
 
-    assert.equal(data.length, 5)
     for (let i = 0; i < data.length - 1; i++) {
       assert.ok(data[i].size <= data[i + 1].size)
     }
