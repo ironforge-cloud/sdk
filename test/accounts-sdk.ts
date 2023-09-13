@@ -211,7 +211,7 @@ test('accounts-sdk: mongodb', async (t) => {
 
     data.forEach((item) => {
       assert.equal(Object.keys(item).length, 2)
-      assert.ok(item.account_type)
+      assert.equal(item.account_type, 'CollectionPDA')
       assert.ok(item._id)
     })
   })
