@@ -171,3 +171,84 @@ test('accounts-sdk: memcmp', async (t) => {
   })
   assert.equal(result.data?.length, 3)
 })
+
+// -----------------
+// MongoDB
+// -----------------
+test('accounts-sdk: mongodb', async (t) => {
+  const sdk = new IronforgeSdk(API_KEY)
+
+  await t.test('aggregation pipeline', async () => {
+    const { result, status } = await sdk.accounts.mongodb.aggregate({
+      body: {
+        pipeline: [
+          {
+            $match: {
+              account_type: 'CollectionPDA',
+            },
+          },
+          {
+            $project: {
+              account_type: 1,
+              _id: 1,
+            },
+          },
+          {
+            $limit: 10,
+          },
+        ],
+      },
+      cluster: 'devnet',
+      program: 'cndy3Z4yapfJBmL3ShUp5exZKqR3z33thTzeNMm2gRZ',
+    })
+
+    assert.equal(status, 200)
+
+    const data = result.data
+
+    assert.equal(data.length, 10)
+
+    data.forEach((item) => {
+      assert.equal(Object.keys(item).length, 2)
+      assert.equal(item.account_type, 'CollectionPDA')
+      assert.ok(item._id)
+    })
+  })
+
+  await t.test('find with sort + pagination', async () => {
+    const { result, status } = await sdk.accounts.mongodb.find({
+      body: {
+        query: {
+          account_type: 'CollectionPDA',
+        },
+        options: {
+          limit: 5,
+          skip: 10,
+          sort: [['size', 'asc']],
+        },
+      },
+      cluster: 'devnet',
+      program: 'cndy3Z4yapfJBmL3ShUp5exZKqR3z33thTzeNMm2gRZ',
+    })
+
+    assert.equal(status, 200)
+
+    spok(t, result, {
+      metadata: { count: 5, offset: 10, limit: 5, hasMore: true },
+      error: null,
+    })
+
+    const data = result.data
+    assert(data != null)
+
+    assert.equal(data.length, 5)
+
+    data.forEach((item) => {
+      assert.equal(item.account_type, 'CollectionPDA')
+    })
+
+    for (let i = 0; i < data.length - 1; i++) {
+      assert.ok(data[i].size <= data[i + 1].size)
+    }
+  })
+})

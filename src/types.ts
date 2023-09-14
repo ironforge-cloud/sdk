@@ -103,3 +103,16 @@ export type AccountsMemcmpBody = {
 export type AccountsAggregateBody = {
   pipeline: Record<string, any>[]
 }
+
+export type MongoDbFindBody = {
+  query?: object
+  projection?: object
+  options?: {
+    limit?: number
+    skip?: number
+    sort?: Sort
+  }
+}
+export type MongoDbAggregateBody = {
+  pipeline: Record<string, any>[]
+}

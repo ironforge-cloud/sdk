@@ -7,6 +7,7 @@ import {
 import { accountsFindByType, AccountsFindByTypeConfig } from './find-by-type'
 import { accountsFindOne, AccountsFindOneConfig } from './find-one'
 import { accountsMemcmp, AccountsMemcmpConfig } from './memcmp'
+import { MongoDbSDK } from './mongodb'
 
 export { AccountsAggregateConfig } from './aggregate'
 export { AccountsFilterByTypeConfig } from './filter-by-type'
@@ -14,6 +15,8 @@ export { AccountsFilterConfig } from './filter'
 export { AccountsFindByTypeConfig } from './find-by-type'
 export { AccountsFindOneConfig } from './find-one'
 export { AccountsMemcmpConfig } from './memcmp'
+
+export * from './mongodb'
 
 /**
  * The Accounts SDK provides a set of functions for querying the Ironforge
@@ -32,6 +35,13 @@ export class AccountsSdk {
     public readonly apiKey: string,
     public readonly host: string
   ) {}
+
+  /**
+   * Provides access to the MongoDB SDK methods.
+   */
+  get mongodb() {
+    return new MongoDbSDK(this.apiKey, this.host)
+  }
 
   /**
    * Applies an aggregate function to the accounts of a program.
