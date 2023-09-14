@@ -176,8 +176,7 @@ test('accounts-sdk: memcmp', async (t) => {
 // MongoDB
 // -----------------
 test('accounts-sdk: mongodb', async (t) => {
-  // TODO: Remove prefix
-  const sdk = new IronforgeSdk(API_KEY, 'dev')
+  const sdk = new IronforgeSdk(API_KEY)
 
   await t.test('aggregation pipeline', async () => {
     const { result, status } = await sdk.accounts.mongodb.aggregate({
