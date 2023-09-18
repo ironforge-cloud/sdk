@@ -25,7 +25,8 @@ export async function mongoDbFind<T = any>(
   const { body, cluster, program, cacheControl } = config
 
   const res = await fetch(
-    `https://${host}/v1/${cluster}/${program}/mongodb` + `?apiKey=${apiKey}`,
+    `https://${host}/v1/${cluster}/${program}/mongodb/find` +
+      `?apiKey=${apiKey}`,
     {
       headers: requestHeaders({ cacheControl }),
       body: JSON.stringify(body),

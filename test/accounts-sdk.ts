@@ -176,7 +176,7 @@ test('accounts-sdk: memcmp', async (t) => {
 // MongoDB
 // -----------------
 test('accounts-sdk: mongodb', async (t) => {
-  const sdk = new IronforgeSdk(API_KEY)
+  const sdk = new IronforgeSdk(API_KEY, 'dev')
 
   await t.test('aggregation pipeline', async () => {
     const { result, status } = await sdk.accounts.mongodb.aggregate({
