@@ -1,4 +1,4 @@
-import { AccountsRequestResultWithMetadata } from '../types'
+import { AccountsRequestResult } from '../types'
 import { Cluster, requestHeaders, tryExtractResultFromResponse } from '../utils'
 
 /** Configures the accounts findByType request. */
@@ -32,5 +32,5 @@ export async function accountsFindByType<T = any>(
       method: 'GET',
     }
   )
-  return tryExtractResultFromResponse<AccountsRequestResultWithMetadata<T>>(res)
+  return tryExtractResultFromResponse<AccountsRequestResult<T[]>>(res)
 }

@@ -45,7 +45,6 @@ test('accounts-sdk: aggregate', async () => {
 
   assert.equal(status, 200)
   assert(result.error == null)
-  result.data
   assert.equal(result.data?.length, 5)
 })
 
@@ -63,10 +62,7 @@ test('accounts-sdk: filter by type', async (t) => {
     offset: 0,
   })
   assert.equal(status, 200)
-  spok(t, result, {
-    metadata: { count: 2, offset: 0, limit: 2, hasMore: true },
-    error: null,
-  })
+  assert(result.error == null)
   assert.equal(result.data?.length, 2)
 })
 
@@ -82,11 +78,9 @@ test('accounts-sdk: filter', async (t) => {
     limit: 3,
     offset: 0,
   })
+
   assert.equal(status, 200)
-  spok(t, result, {
-    metadata: { count: 3, offset: 0, limit: 3, hasMore: true },
-    error: null,
-  })
+  assert(result.error == null)
   assert.equal(result.data?.length, 3)
 })
 
@@ -103,10 +97,7 @@ test('accounts-sdk: find by type', async (t) => {
     offset: 0,
   })
   assert.equal(status, 200)
-  spok(t, result, {
-    metadata: { count: 2, offset: 0, limit: 2, hasMore: true },
-    error: null,
-  })
+  assert(result.error == null)
   assert(
     !(result.data as any[]).some((x: any) => x.account_type !== 'CandyMachine')
   )
@@ -165,10 +156,7 @@ test('accounts-sdk: memcmp', async (t) => {
     offset: 0,
   })
   assert.equal(status, 200)
-  spok(t, result, {
-    metadata: { count: 3, offset: 0, limit: 3, hasMore: true },
-    error: null,
-  })
+  assert(result.error == null)
   assert.equal(result.data?.length, 3)
 })
 
@@ -233,10 +221,7 @@ test('accounts-sdk: mongodb', async (t) => {
 
     assert.equal(status, 200)
 
-    spok(t, result, {
-      metadata: { count: 5, offset: 10, limit: 5, hasMore: true },
-      error: null,
-    })
+    assert(result.error == null)
 
     const data = result.data
     assert(data != null)
