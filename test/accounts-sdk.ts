@@ -10,7 +10,7 @@ if (API_KEY == null) throw new Error('IF_PLATFORM_API_KEY not set')
 // Aggregate
 // -----------------
 test('accounts-sdk: aggregate', async () => {
-  const sdk = new IronforgeSdk(API_KEY, 'dev')
+  const sdk = new IronforgeSdk(API_KEY)
   const { result, status } = await sdk.accounts.aggregate({
     body: {
       pipeline: [
@@ -52,7 +52,7 @@ test('accounts-sdk: aggregate', async () => {
 // Filter By Type
 // -----------------
 test('accounts-sdk: filter by type', async (t) => {
-  const sdk = new IronforgeSdk(API_KEY, 'dev')
+  const sdk = new IronforgeSdk(API_KEY)
   const { result, status } = await sdk.accounts.filterByType({
     accountType: 'CandyMachine',
     body: { filter: { 'data.data.price': 250 } },
@@ -70,7 +70,7 @@ test('accounts-sdk: filter by type', async (t) => {
 // Filter
 // -----------------
 test('accounts-sdk: filter', async (t) => {
-  const sdk = new IronforgeSdk(API_KEY, 'dev')
+  const sdk = new IronforgeSdk(API_KEY)
   const { result, status } = await sdk.accounts.filter({
     body: { filter: { 'data.data.price': 250 } },
     cluster: 'devnet',
@@ -88,7 +88,7 @@ test('accounts-sdk: filter', async (t) => {
 // Find By Type
 // -----------------
 test('accounts-sdk: find by type', async (t) => {
-  const sdk = new IronforgeSdk(API_KEY, 'dev')
+  const sdk = new IronforgeSdk(API_KEY)
   const { result, status } = await sdk.accounts.findByType({
     accountType: 'CandyMachine',
     cluster: 'devnet',
@@ -108,7 +108,7 @@ test('accounts-sdk: find by type', async (t) => {
 // FindOne
 // -----------------
 test('accounts-sdk: findOne', async (t) => {
-  const sdk = new IronforgeSdk(API_KEY, 'dev')
+  const sdk = new IronforgeSdk(API_KEY)
   const { result, status } = await sdk.accounts.findOne({
     cluster: 'devnet',
     program: 'cndy3Z4yapfJBmL3ShUp5exZKqR3z33thTzeNMm2gRZ',
@@ -138,7 +138,7 @@ test('accounts-sdk: findOne', async (t) => {
 // Memcmp
 // -----------------
 test('accounts-sdk: memcmp', async (t) => {
-  const sdk = new IronforgeSdk(API_KEY, 'dev')
+  const sdk = new IronforgeSdk(API_KEY)
   const { result, status } = await sdk.accounts.memcmp({
     body: {
       filters: [
@@ -164,7 +164,7 @@ test('accounts-sdk: memcmp', async (t) => {
 // MongoDB
 // -----------------
 test('accounts-sdk: mongodb', async (t) => {
-  const sdk = new IronforgeSdk(API_KEY, 'dev')
+  const sdk = new IronforgeSdk(API_KEY)
 
   await t.test('aggregation pipeline', async () => {
     const { result, status } = await sdk.accounts.mongodb.aggregate({
