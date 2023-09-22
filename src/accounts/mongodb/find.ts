@@ -1,4 +1,4 @@
-import { AccountsRequestResultWithMetadata, MongoDbFindBody } from '../../types'
+import { AccountsRequestResult, MongoDbFindBody } from '../../types'
 import {
   Cluster,
   requestHeaders,
@@ -33,5 +33,5 @@ export async function mongoDbFind<T = any>(
       method: 'POST',
     }
   )
-  return tryExtractResultFromResponse<AccountsRequestResultWithMetadata<T>>(res)
+  return tryExtractResultFromResponse<AccountsRequestResult<T[]>>(res)
 }

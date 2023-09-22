@@ -6,8 +6,8 @@
  * The success case of @link AccountsRequestResult.
  */
 export type SuccessAccountsRequestResult<T> = {
-  error: null | undefined
-  data: T
+  data: T | null
+  error: undefined
 }
 
 /**
@@ -15,7 +15,7 @@ export type SuccessAccountsRequestResult<T> = {
  */
 export type FailureAccountsRequestResult = {
   error: string
-  data: null | undefined
+  data: undefined
 }
 
 /**
@@ -42,17 +42,6 @@ export function isSuccessResult<T>(
   result: AccountsRequestResult<T>
 ): result is SuccessAccountsRequestResult<T> {
   return result.error == null && result.data != null
-}
-
-export type AccountsRequestResultWithMetadata<T> = AccountsRequestResult<
-  T[]
-> & {
-  metadata: {
-    count: number
-    offset: number
-    limit: number
-    hasMore: boolean
-  }
 }
 
 // -----------------

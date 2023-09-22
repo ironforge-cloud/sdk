@@ -10,7 +10,7 @@ if (API_KEY == null) throw new Error('IF_PLATFORM_API_KEY not set')
 // Aggregate
 // -----------------
 test('accounts-sdk: aggregate', async () => {
-  const sdk = new IronforgeSdk(API_KEY)
+  const sdk = new IronforgeSdk(API_KEY, 'dev')
   const { result, status } = await sdk.accounts.aggregate({
     body: {
       pipeline: [
@@ -45,7 +45,6 @@ test('accounts-sdk: aggregate', async () => {
 
   assert.equal(status, 200)
   assert(result.error == null)
-  result.data
   assert.equal(result.data?.length, 5)
 })
 
@@ -53,7 +52,7 @@ test('accounts-sdk: aggregate', async () => {
 // Filter By Type
 // -----------------
 test('accounts-sdk: filter by type', async (t) => {
-  const sdk = new IronforgeSdk(API_KEY)
+  const sdk = new IronforgeSdk(API_KEY, 'dev')
   const { result, status } = await sdk.accounts.filterByType({
     accountType: 'CandyMachine',
     body: { filter: { 'data.data.price': 250 } },
@@ -63,10 +62,7 @@ test('accounts-sdk: filter by type', async (t) => {
     offset: 0,
   })
   assert.equal(status, 200)
-  spok(t, result, {
-    metadata: { count: 2, offset: 0, limit: 2, hasMore: true },
-    error: null,
-  })
+  assert(result.error == null)
   assert.equal(result.data?.length, 2)
 })
 
@@ -74,7 +70,7 @@ test('accounts-sdk: filter by type', async (t) => {
 // Filter
 // -----------------
 test('accounts-sdk: filter', async (t) => {
-  const sdk = new IronforgeSdk(API_KEY)
+  const sdk = new IronforgeSdk(API_KEY, 'dev')
   const { result, status } = await sdk.accounts.filter({
     body: { filter: { 'data.data.price': 250 } },
     cluster: 'devnet',
@@ -82,11 +78,9 @@ test('accounts-sdk: filter', async (t) => {
     limit: 3,
     offset: 0,
   })
+
   assert.equal(status, 200)
-  spok(t, result, {
-    metadata: { count: 3, offset: 0, limit: 3, hasMore: true },
-    error: null,
-  })
+  assert(result.error == null)
   assert.equal(result.data?.length, 3)
 })
 
@@ -94,7 +88,7 @@ test('accounts-sdk: filter', async (t) => {
 // Find By Type
 // -----------------
 test('accounts-sdk: find by type', async (t) => {
-  const sdk = new IronforgeSdk(API_KEY)
+  const sdk = new IronforgeSdk(API_KEY, 'dev')
   const { result, status } = await sdk.accounts.findByType({
     accountType: 'CandyMachine',
     cluster: 'devnet',
@@ -103,10 +97,7 @@ test('accounts-sdk: find by type', async (t) => {
     offset: 0,
   })
   assert.equal(status, 200)
-  spok(t, result, {
-    metadata: { count: 2, offset: 0, limit: 2, hasMore: true },
-    error: null,
-  })
+  assert(result.error == null)
   assert(
     !(result.data as any[]).some((x: any) => x.account_type !== 'CandyMachine')
   )
@@ -117,7 +108,7 @@ test('accounts-sdk: find by type', async (t) => {
 // FindOne
 // -----------------
 test('accounts-sdk: findOne', async (t) => {
-  const sdk = new IronforgeSdk(API_KEY)
+  const sdk = new IronforgeSdk(API_KEY, 'dev')
   const { result, status } = await sdk.accounts.findOne({
     cluster: 'devnet',
     program: 'cndy3Z4yapfJBmL3ShUp5exZKqR3z33thTzeNMm2gRZ',
@@ -147,7 +138,7 @@ test('accounts-sdk: findOne', async (t) => {
 // Memcmp
 // -----------------
 test('accounts-sdk: memcmp', async (t) => {
-  const sdk = new IronforgeSdk(API_KEY)
+  const sdk = new IronforgeSdk(API_KEY, 'dev')
   const { result, status } = await sdk.accounts.memcmp({
     body: {
       filters: [
@@ -165,10 +156,7 @@ test('accounts-sdk: memcmp', async (t) => {
     offset: 0,
   })
   assert.equal(status, 200)
-  spok(t, result, {
-    metadata: { count: 3, offset: 0, limit: 3, hasMore: true },
-    error: null,
-  })
+  assert(result.error == null)
   assert.equal(result.data?.length, 3)
 })
 
@@ -176,7 +164,7 @@ test('accounts-sdk: memcmp', async (t) => {
 // MongoDB
 // -----------------
 test('accounts-sdk: mongodb', async (t) => {
-  const sdk = new IronforgeSdk(API_KEY)
+  const sdk = new IronforgeSdk(API_KEY, 'dev')
 
   await t.test('aggregation pipeline', async () => {
     const { result, status } = await sdk.accounts.mongodb.aggregate({
@@ -233,10 +221,7 @@ test('accounts-sdk: mongodb', async (t) => {
 
     assert.equal(status, 200)
 
-    spok(t, result, {
-      metadata: { count: 5, offset: 10, limit: 5, hasMore: true },
-      error: null,
-    })
+    assert(result.error == null)
 
     const data = result.data
     assert(data != null)

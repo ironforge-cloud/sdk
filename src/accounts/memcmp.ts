@@ -1,4 +1,4 @@
-import { AccountsRequestResultWithMetadata, AccountsMemcmpBody } from '../types'
+import { AccountsMemcmpBody, AccountsRequestResult } from '../types'
 import { Cluster, requestHeaders, tryExtractResultFromResponse } from '../utils'
 
 /** Configures the accounts memcmp request. */
@@ -33,5 +33,5 @@ export async function accountsMemcmp<T = any>(
       method: 'POST',
     }
   )
-  return tryExtractResultFromResponse<AccountsRequestResultWithMetadata<T>>(res)
+  return tryExtractResultFromResponse<AccountsRequestResult<T[]>>(res)
 }

@@ -1,4 +1,4 @@
-import { AccountsFilterBody, AccountsRequestResultWithMetadata } from '../types'
+import { AccountsFilterBody, AccountsRequestResult } from '../types'
 import { Cluster, requestHeaders, tryExtractResultFromResponse } from '../utils'
 
 /** Configures the accounts filter request. */
@@ -33,5 +33,5 @@ export async function accountsFilter<T = any>(
       method: 'POST',
     }
   )
-  return tryExtractResultFromResponse<AccountsRequestResultWithMetadata<T>>(res)
+  return tryExtractResultFromResponse<AccountsRequestResult<T[]>>(res)
 }
